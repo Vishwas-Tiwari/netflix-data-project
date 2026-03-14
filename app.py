@@ -281,32 +281,32 @@ def main():
     # Row 1: Overview charts
     col1, col2 = st.columns(2)
     with col1:
-        st.plotly_chart(fig1, use_container_width=True)
+        st.plotly_chart(fig1, width='stretch')
     with col2:
-        st.plotly_chart(fig2, use_container_width=True)
+        st.plotly_chart(fig2, width='stretch')
 
     st.markdown("---")
 
     # Row 2: Geographic and Genre analysis
     col3, col4 = st.columns(2)
     with col3:
-        st.plotly_chart(fig3, use_container_width=True)
+        st.plotly_chart(fig3, width='stretch')
     with col4:
-        st.plotly_chart(fig4, use_container_width=True)
+        st.plotly_chart(fig4, width='stretch')
 
     st.markdown("---")
 
     # Row 3: Content details
     col5, col6 = st.columns(2)
     with col5:
-        st.plotly_chart(fig5, use_container_width=True)
+        st.plotly_chart(fig5, width='stretch')
     with col6:
-        st.plotly_chart(fig6, use_container_width=True)
+        st.plotly_chart(fig6, width='stretch')
 
     st.markdown("---")
 
     # Row 4: Content growth
-    st.plotly_chart(fig7, use_container_width=True)
+    st.plotly_chart(fig7, width='stretch')
 
     st.markdown("---")
 
