@@ -73,23 +73,23 @@ def create_kpis(df):
 def create_visualizations(df, filtered_df):
     """Create all visualizations"""
 
-    # Custom plotly layout dictionary matching Netflix identity
+    # Custom plotly layout dictionary matching Light theme
     plotly_layout = {
         'paper_bgcolor': 'rgba(0,0,0,0)',
         'plot_bgcolor': 'rgba(0,0,0,0)',
-        'font': {'family': 'Montserrat, sans-serif', 'color': '#f5f5f7'},
-        'title': {'font': {'family': 'Montserrat, sans-serif', 'size': 18, 'color': '#ffffff'}},
+        'font': {'family': 'Montserrat, sans-serif', 'color': '#2d3748'},
+        'title': {'font': {'family': 'Montserrat, sans-serif', 'size': 18, 'color': '#1a202c'}},
         'xaxis': {
-            'gridcolor': '#222222',
-            'linecolor': '#333333',
-            'zerolinecolor': '#333333',
-            'tickfont': {'color': '#aaaaaa'}
+            'gridcolor': '#e2e8f0',
+            'linecolor': '#cbd5e0',
+            'zerolinecolor': '#cbd5e0',
+            'tickfont': {'color': '#4a5568'}
         },
         'yaxis': {
-            'gridcolor': '#222222',
-            'linecolor': '#333333',
-            'zerolinecolor': '#333333',
-            'tickfont': {'color': '#aaaaaa'}
+            'gridcolor': '#e2e8f0',
+            'linecolor': '#cbd5e0',
+            'zerolinecolor': '#cbd5e0',
+            'tickfont': {'color': '#4a5568'}
         },
         'margin': dict(l=40, r=40, t=60, b=40)
     }
@@ -99,11 +99,11 @@ def create_visualizations(df, filtered_df):
     if not type_count.empty:
         fig1 = px.pie(values=type_count.values, names=type_count.index,
                       title="🎬 Movies vs TV Shows Distribution",
-                      color_discrete_sequence=['#E50914', '#221F1F'])
+                      color_discrete_sequence=px.colors.qualitative.Set3)
         fig1.update_traces(
             textposition='inside', 
             textinfo='percent+label',
-            marker=dict(line=dict(color='#111111', width=2))
+            marker=dict(line=dict(color='#ffffff', width=2))
         )
     else:
         fig1 = go.Figure()
@@ -116,7 +116,7 @@ def create_visualizations(df, filtered_df):
         fig2 = px.line(x=year_data.index, y=year_data.values,
                        labels={'x':'Release Year','y':'Content Count'},
                        title="📈 Content Release Trend Over Time")
-        fig2.update_traces(line_color='#E50914', line_width=3)
+        fig2.update_traces(line_color='#3b82f6', line_width=3)
     else:
         fig2 = go.Figure()
         fig2.add_annotation(text="No data available", showarrow=False)
@@ -129,9 +129,9 @@ def create_visualizations(df, filtered_df):
                       labels={'x': 'Country', 'y': 'Count'},
                       title="🌍 Top 10 Countries Producing Netflix Content",
                       color=country_data.values,
-                      color_continuous_scale=['#221F1F', '#E50914'])
+                      color_continuous_scale='Blues')
         fig3.update_layout(coloraxis_showscale=False)
-        fig3.update_traces(marker_line_color='#111111', marker_line_width=1)
+        fig3.update_traces(marker_line_color='#ffffff', marker_line_width=1)
     else:
         fig3 = go.Figure()
         fig3.add_annotation(text="No data available", showarrow=False)
@@ -147,9 +147,9 @@ def create_visualizations(df, filtered_df):
                       labels={'x': 'Genre', 'y': 'Count'},
                       title="🎭 Top 10 Genres on Netflix",
                       color=genre_counts.values,
-                      color_continuous_scale=['#221F1F', '#E50914'])
+                      color_continuous_scale='Greens')
         fig4.update_layout(coloraxis_showscale=False)
-        fig4.update_traces(marker_line_color='#111111', marker_line_width=1)
+        fig4.update_traces(marker_line_color='#ffffff', marker_line_width=1)
     else:
         fig4 = go.Figure()
         fig4.add_annotation(text="No data available", showarrow=False)
@@ -164,8 +164,8 @@ def create_visualizations(df, filtered_df):
                                title="⏱️ Duration Distribution",
                                labels={'x': duration_label, 'y': 'Count'},
                                nbins=30,
-                               color_discrete_sequence=['#E50914'])
-            fig5.update_traces(marker=dict(line=dict(color='#111111', width=1)))
+                               color_discrete_sequence=['#60a5fa'])
+            fig5.update_traces(marker=dict(line=dict(color='#ffffff', width=1)))
         else:
             fig5 = go.Figure()
             fig5.add_annotation(text="No duration data available", showarrow=False)
@@ -181,9 +181,9 @@ def create_visualizations(df, filtered_df):
                       labels={'x': 'Rating', 'y': 'Count'},
                       title="⭐ Ratings Distribution",
                       color=rating_data.values,
-                      color_continuous_scale=['#221F1F', '#E50914'])
+                      color_continuous_scale='Reds')
         fig6.update_layout(coloraxis_showscale=False)
-        fig6.update_traces(marker_line_color='#111111', marker_line_width=1)
+        fig6.update_traces(marker_line_color='#ffffff', marker_line_width=1)
     else:
         fig6 = go.Figure()
         fig6.add_annotation(text="No rating data available", showarrow=False)
@@ -195,8 +195,8 @@ def create_visualizations(df, filtered_df):
         fig7 = px.area(x=content_additions.index, y=content_additions.values,
                       title="📅 Content Additions by Year",
                       labels={'x':'Year Added', 'y':'Count of Titles'},
-                      color_discrete_sequence=['#E50914'])
-        fig7.update_traces(mode='lines+markers', marker=dict(size=6, color='#ffffff', line=dict(color='#E50914', width=2)))
+                      color_discrete_sequence=['#FF6B6B'])
+        fig7.update_traces(mode='lines+markers', marker=dict(size=6, color='#ffffff', line=dict(color='#FF6B6B', width=2)))
     else:
         fig7 = go.Figure()
         fig7.add_annotation(text="No content addition data available", showarrow=False)
@@ -242,12 +242,12 @@ def get_recommendations(df, title, top_n=5):
 def card_html(title, value, icon):
     return f"""
     <div style="
-        background-color: #181818;
-        border: 1px solid #333333;
+        background-color: #ffffff;
+        border: 1px solid #e2e8f0;
         border-radius: 10px;
         padding: 20px 15px;
         text-align: center;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
         transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
         min-height: 120px;
         display: flex;
@@ -255,10 +255,10 @@ def card_html(title, value, icon):
         justify-content: center;
         align-items: center;
         margin-bottom: 15px;
-    " onmouseover="this.style.transform='translateY(-4px)'; this.style.borderColor='#E50914'; this.style.boxShadow='0 8px 20px rgba(229, 9, 20, 0.2)';" onmouseout="this.style.transform='translateY(0)'; this.style.borderColor='#333333'; this.style.boxShadow='0 4px 12px rgba(0, 0, 0, 0.4)';">
-        <div style="font-size: 32px; margin-bottom: 8px; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));">{icon}</div>
-        <div style="font-size: 11px; color: #aaaaaa; text-transform: uppercase; font-weight: 700; letter-spacing: 1px; margin-bottom: 6px;">{title}</div>
-        <div title="{value}" style="font-size: 16px; font-weight: 800; color: #ffffff; width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{value}</div>
+    " onmouseover="this.style.transform='translateY(-4px)'; this.style.borderColor='#E50914'; this.style.boxShadow='0 8px 20px rgba(0, 0, 0, 0.1)';" onmouseout="this.style.transform='translateY(0)'; this.style.borderColor='#e2e8f0'; this.style.boxShadow='0 4px 12px rgba(0, 0, 0, 0.05)';">
+        <div style="font-size: 32px; margin-bottom: 8px; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));">{icon}</div>
+        <div style="font-size: 11px; color: #718096; text-transform: uppercase; font-weight: 700; letter-spacing: 1px; margin-bottom: 6px;">{title}</div>
+        <div title="{value}" style="font-size: 16px; font-weight: 800; color: #1a202c; width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{value}</div>
     </div>
     """
 
@@ -276,19 +276,19 @@ def main():
         
         /* Background and primary colors */
         .stApp {
-            background-color: #111111;
-            color: #f5f5f7;
+            background-color: #f8f9fa;
+            color: #2d3748;
         }
         
         /* Sidebar styling */
         [data-testid="stSidebar"] {
-            background-color: #141414 !important;
-            border-right: 1px solid #2b2b2b !important;
+            background-color: #ffffff !important;
+            border-right: 1px solid #e2e8f0 !important;
         }
         
         /* Custom header/title styles */
         h1, h2, h3, h4, h5, h6 {
-            color: #ffffff !important;
+            color: #1a202c !important;
             font-family: 'Montserrat', sans-serif !important;
             font-weight: 700 !important;
         }
@@ -298,14 +298,14 @@ def main():
             color: #E50914 !important;
             font-size: 2.8rem !important;
             font-weight: 800 !important;
-            text-shadow: 0 0 15px rgba(229, 9, 20, 0.4);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
             margin-bottom: 0.2rem;
             text-transform: uppercase;
             letter-spacing: -1px;
         }
         
         .dashboard-subtitle {
-            color: #aaaaaa;
+            color: #4a5568;
             font-size: 1.1rem;
             font-weight: 400;
             margin-bottom: 1.5rem;
@@ -314,31 +314,31 @@ def main():
         /* Netflix Red gradient divider */
         .netflix-divider {
             height: 4px;
-            background: linear-gradient(90deg, #E50914 0%, #221F1F 50%, #111111 100%);
+            background: linear-gradient(90deg, #E50914 0%, #e2e8f0 50%, #f8f9fa 100%);
             margin-bottom: 2rem;
             border-radius: 2px;
         }
         
         /* Form inputs styling */
         .stTextInput>div>div>input {
-            background-color: #181818 !important;
-            color: #ffffff !important;
-            border: 1px solid #333333 !important;
+            background-color: #ffffff !important;
+            color: #1a202c !important;
+            border: 1px solid #cbd5e0 !important;
             border-radius: 6px !important;
             padding: 10px 14px !important;
         }
         
         .stSelectbox>div>div>div {
-            background-color: #181818 !important;
-            color: #ffffff !important;
-            border: 1px solid #333333 !important;
+            background-color: #ffffff !important;
+            color: #1a202c !important;
+            border: 1px solid #cbd5e0 !important;
             border-radius: 6px !important;
         }
         
         /* Multiselect styling */
         div[data-baseweb="select"] {
-            background-color: #181818 !important;
-            border: 1px solid #333333 !important;
+            background-color: #ffffff !important;
+            border: 1px solid #cbd5e0 !important;
             border-radius: 6px !important;
         }
         
@@ -358,7 +358,7 @@ def main():
         
         .stButton>button:hover {
             background-color: #f40b16 !important;
-            box-shadow: 0 0 10px rgba(229, 9, 20, 0.6);
+            box-shadow: 0 4px 6px rgba(229, 9, 20, 0.2);
             transform: scale(1.02);
         }
         
@@ -368,17 +368,18 @@ def main():
         
         /* Table / DataFrame container styling */
         .stDataFrame {
-            background-color: #181818 !important;
-            border: 1px solid #333333 !important;
+            background-color: #ffffff !important;
+            border: 1px solid #cbd5e0 !important;
             border-radius: 8px !important;
         }
         
         /* Success/Info alerts */
         .stAlert {
-            background-color: #181818 !important;
-            color: #ffffff !important;
-            border: 1px solid #E50914 !important;
+            background-color: #ffffff !important;
+            color: #1a202c !important;
+            border: 1px solid #cbd5e0 !important;
             border-radius: 8px !important;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
         }
     </style>
     """, unsafe_allow_html=True)
@@ -393,7 +394,7 @@ def main():
     df = clean_data(df)
 
     # Sidebar filters
-    st.sidebar.markdown('<div style="font-size: 1.5rem; font-weight: 700; color: #ffffff; margin-bottom: 1rem;">🎛️ Dashboard Filters</div>', unsafe_allow_html=True)
+    st.sidebar.markdown('<div style="font-size: 1.5rem; font-weight: 700; color: #1a202c; margin-bottom: 1rem;">🎛️ Dashboard Filters</div>', unsafe_allow_html=True)
 
     # Reset filters button
     if st.sidebar.button("🔄 Reset All Filters"):
