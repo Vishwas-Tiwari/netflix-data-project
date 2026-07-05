@@ -1,64 +1,77 @@
 # 🎬 Netflix Data Analytics Dashboard
 
-An advanced, industry-level Streamlit application for analyzing Netflix content data. Perfect for Data Analyst internship portfolios.
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://netflix-data-project-ezrwaog526uskrzb4zsud8.streamlit.app/)
+
+An advanced, industry-level Streamlit web application designed with a dark Netflix brand aesthetic to clean, process, analyze, and recommend Netflix content.
+
+🚀 **Live URL:** [https://netflix-data-project-ezrwaog526uskrzb4zsud8.streamlit.app/](https://netflix-data-project-ezrwaog526uskrzb4zsud8.streamlit.app/)
+
+---
+
+## 📸 Dashboard Screenshots
+
+### 🏠 Home Screen & Key Performance Indicators
+![Home Screen](assets/dashboard_home.png)
+
+### 📈 Overview Charts & Content Release Trend
+![Overview Charts](assets/dashboard_overview_charts.png)
+
+### 🌍 Top Countries Producing Content & Top Genres
+![Geographic & Genre Analysis](assets/dashboard_geo_charts.png)
+
+### ⏱️ Content Duration & Ratings Distribution
+![Content Details](assets/dashboard_ratings_charts.png)
+
+### 🔍 Interactive Content Search
+![Content Search](assets/dashboard_search.png)
+
+### 🤖 TF-IDF Content Recommendation Engine
+![Recommendation System](assets/dashboard_recommendations.png)
+
+---
 
 ## 🚀 Features
 
-### 📊 Data Cleaning & Processing
-- Handle missing values in country, director, and cast columns
-- Convert date_added to datetime format
-- Extract year_added and month_added columns
-- Process duration data for numerical analysis
+### 🎨 Netflix Branded UI/UX Overhaul
+- **Montserrat Typography**: Sleek modern Google Font injection.
+- **Glassmorphic Interactive Cards**: Glassmorphic KPI metrics dynamically scale on hover (micro-animations) with Netflix red accents, safe from text truncation.
+- **Unified Dark Mode**: Premium dark backgrounds (`#111111` for app, `#141414` for sidebar) matching the native Netflix web interface.
 
-### 🎛️ Interactive Dashboard
-- **Wide layout** with professional UI design
-- **Sidebar filters** for dynamic data exploration:
-  - Content Type (Movie/TV Show)
-  - Country selection
-  - Release Year range slider
-  - Genre filtering
+### 📊 Clean & Interactive Data Processing
+- Handles missing country, director, and cast data dynamically with `Unknown` fallbacks.
+- Converts metadata fields and extracts custom numeric variables for duration analysis.
+- Sidebar filters for content type, producing country, release year range, and specific genres.
+- Reset option to quickly restore filters to default view.
 
-### 📈 Key Performance Indicators (KPIs)
-- Total Titles count
-- Movies vs TV Shows breakdown
-- Most Common Genre
-- Most Active Country (by content production)
+### 📈 Advanced Interactive Plotly Visualizations
+- **Movies vs TV Shows Distribution** (Netflix themed Pie chart)
+- **Content Release Trend Over Time** (Clean Line chart)
+- **Top 10 Producing Countries** (Styled Bar chart)
+- **Top 10 Genres on Netflix** (Styled Bar chart)
+- **Duration Distribution** (Interactive Histogram)
+- **Ratings Distribution** (Styled Bar chart)
+- **Content Additions Timeline** (Visual Area chart)
 
-### 📊 Advanced Visualizations
-- **Movies vs TV Shows Distribution** (Pie Chart)
-- **Content Release Trend** over time (Line Chart)
-- **Top 10 Countries** producing Netflix content (Bar Chart)
-- **Top 10 Genres** on Netflix (Bar Chart)
-- **Duration Distribution** for movies (Histogram)
-- **Ratings Distribution** (Bar Chart)
-- **Content Addition Heatmap** by month and year
+### 🔍 Search & Discovery
+- Real-time instant text search query matching Netflix titles.
+- Show cases detailed breakdowns in an organized Streamlit dataframe.
 
-### 🔍 Search Functionality
-- Real-time title search with instant results
-- Filter-compatible search results
+### 🤖 Machine Learning Recommendation Engine
+- Powered by `scikit-learn`'s `TfidfVectorizer` and `cosine_similarity`.
+- Performs TF-IDF on genre content descriptions and suggests top 5 similar movies or TV shows based on the active selection.
 
-### 💡 Content Insights
-- Most Common Director
-- Most Frequent Actor
-- Fastest Growing Country (based on recent additions)
-
-### 🤖 Machine Learning Recommendation System
-- **Genre-based similarity** using TF-IDF and Cosine Similarity
-- User selects a title → Gets 5 similar recommendations
-- Powered by scikit-learn
-
-### ⚡ Performance Optimizations
-- `@st.cache_data` for efficient data loading
-- Modular code structure for maintainability
+---
 
 ## 🛠️ Technology Stack
 
 - **Python 3.x**
 - **Streamlit** - Web app framework
 - **Pandas** - Data manipulation
-- **Plotly** - Interactive visualizations
-- **Scikit-learn** - Machine learning for recommendations
-- **NumPy** - Numerical computations
+- **Plotly Express & Graph Objects** - High-fidelity interactive visualizations
+- **Scikit-learn** - Machine learning similarity algorithms
+- **NumPy** - Computational analysis
+
+---
 
 ## 📁 Project Structure
 
@@ -66,84 +79,37 @@ An advanced, industry-level Streamlit application for analyzing Netflix content 
 netflix-data-project/
 ├── app.py                 # Main Streamlit application
 ├── netflix_titles.csv     # Netflix dataset
+├── requirements.txt       # Dependencies
+├── assets/                # Dashboard pictures & screenshots
+│   ├── dashboard_home.png
+│   ├── dashboard_overview_charts.png
+│   ├── dashboard_geo_charts.png
+│   ├── dashboard_ratings_charts.png
+│   ├── dashboard_search.png
+│   └── dashboard_recommendations.png
 └── README.md             # Project documentation
 ```
 
-## 🚀 Installation & Usage
+---
 
-### Prerequisites
+## 🚀 Installation & Local Usage
+
+### 1. Install Dependencies
 ```bash
-pip install streamlit pandas plotly scikit-learn
+pip install -r requirements.txt
 ```
 
-### Run the Application
+### 2. Run the Application
 ```bash
 streamlit run app.py
 ```
-
-The dashboard will open in your default browser at `http://localhost:8501`
-
-## 📊 Dataset
-
-The application uses the `netflix_titles.csv` dataset containing:
-- 8,807 Netflix titles
-- Information about movies and TV shows
-- Metadata including cast, director, country, ratings, etc.
-
-## 🎯 Key Highlights for Resume
-
-- **Data Cleaning & Preprocessing**: Professional data handling techniques
-- **Interactive Visualizations**: Multiple chart types with Plotly
-- **Machine Learning Integration**: Recommendation system implementation
-- **Performance Optimization**: Caching and efficient data processing
-- **Professional UI/UX**: Clean, responsive design with emojis and organized sections
-- **Smart Filtering**: Reset filters functionality and clear data status indicators
-- **Improved Visualizations**: Clean area chart replacing complex heatmap
-
-## 🐛 Issues Fixed
-
-- **Visualization Function Call**: Fixed missing `create_visualizations()` call in main function
-- **Area Chart Labels**: Corrected x/y axis labels for content additions chart
-- **Error Handling**: All charts now have proper fallbacks for empty data
-- **Layout Organization**: Improved chart arrangement with clear sections
-
-## ✅ Current Status
-
-- **All 7 Visualizations Working**: Pie, Line, Bar, Histogram, Area charts all functional
-- **Interactive Filters**: Reset button and clear data status indicators
-- **Clean UI**: Professional layout with proper spacing and organization
-- **Error-Free**: No runtime errors or crashes
-- **Improved UX**: Clear indication of active filters and data scope
-- **Modular Code Structure**: Production-ready Python code
-
-## 🔧 Code Quality & Error Handling
-
-- **Robust Error Handling**: All visualizations include fallback displays for empty data
-- **Data Validation**: Comprehensive checks for NaN values and invalid data
-- **Exception Handling**: Try-catch blocks prevent crashes from data processing errors
-- **Modular Functions**: Clean separation of concerns with dedicated functions
-- **Performance Optimization**: Efficient data processing and caching
-- **Cross-platform Compatibility**: Works on all operating systems
-
-## 🐛 Bug Fixes Applied
-
-- **Heatmap Visualization**: Fixed dimension mismatch between data and labels
-- **Duration Processing**: Improved handling of missing duration data
-- **Genre Filtering**: Enhanced regex-based filtering with case-insensitive matching
-- **Recommendation System**: Added error handling for edge cases
-- **Empty Data Handling**: All charts now display appropriate messages when no data is available
-- **Month/Year Processing**: Proper filtering of invalid dates and months
-
-## 📈 Sample Insights
-
-The dashboard provides valuable insights such as:
-- Netflix has more Movies than TV Shows
-- United States is the most active content producer
-- Documentaries and Dramas are the most common genres
-- Content addition peaked in certain years
-- Rating distributions and duration patterns
+The dashboard will launch locally at `http://localhost:8501`.
 
 ---
 
-**Perfect for Data Analyst portfolios and internship applications!** 🎉</content>
-<parameter name="filePath">/Users/vishwastiwari/netflix-data-project/README.md
+## 🐛 Bug Fixes Applied
+
+- **Recommendation Engine indexing issue**: Fixed a critical `IndexError` by resetting the filtered dataframe's index before calling TF-IDF vectors, ensuring consistent matrix mapping.
+- **KPI long string clipping**: Resolved Streamlit's default metric string truncation by developing custom HTML/CSS responsive flexbox layout cards.
+- **Duplicate Element ID error**: Fixed Streamlit runtime errors by registering unique keys across plotly figures.
+- **Empty state checks**: Safeguarded all KPIs and graphs to fail gracefully with warning containers instead of crashing if filters yield zero rows.
