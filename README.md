@@ -32,10 +32,9 @@ An advanced, industry-level Streamlit web application designed with a dark Netfl
 
 ## 🚀 Features
 
-### 🎨 Netflix Branded UI/UX Overhaul
-- **Montserrat Typography**: Sleek modern Google Font injection.
-- **Glassmorphic Interactive Cards**: Glassmorphic KPI metrics dynamically scale on hover (micro-animations) with Netflix red accents, safe from text truncation.
-- **Premium Light Theme**: Clean light backgrounds (`#f8f9fa` for app, `#ffffff` for sidebar) matching the original light theme color scheme.
+### 🎨 Responsive UI/UX
+- **Auto Light/Dark Theme**: Automatically adapts layout and chart styles to light or dark theme based on the user's OS/browser settings.
+- **Clean Structure**: Standard dashboard layout with clear columns and filters.
 
 ### 📊 Clean & Interactive Data Processing
 - Handles missing country, director, and cast data dynamically with `Unknown` fallbacks.
